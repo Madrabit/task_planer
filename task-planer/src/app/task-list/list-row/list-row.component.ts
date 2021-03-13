@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: '[app-list-row]',
   templateUrl: './list-row.component.html',
@@ -7,15 +6,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListRowComponent implements OnInit {
 
-  name = 'Название 10'
-  category = 'Категория 10'
-  dateStart = '18:15 08-10-2018'
-  dateEnd = '20:15 08-10-2018'
-  status = 'Завершено'
+  @Input() name = 'Название 10'
+  @Input() category = 'Категория 10'
+  @Input() dateStart = '18:15 08-10-2018'
+  @Input() dateEnd = '20:15 08-10-2018'
+  @Input() status = 'Завершено'
+
+  @Output() deleteTaskEmitter = new EventEmitter<string>()
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  deleteTask() {
+    this.deleteTaskEmitter.emit(this.name)
+  }
 }
