@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Task } from '../task.model';
+
 
 @Component({
   selector: 'app-task-add',
@@ -6,18 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-add.component.scss']
 })
 export class TaskAddComponent implements OnInit {
-  name: string | undefined;
-  category: string | undefined;
-  dateStart: string | undefined;
-  dateEnd: string | undefined;
-  status: string | undefined;
+  name!: string;
+  category!: string;
+  dateStart!: string;
+  dateEnd!: string;
+  status!: string;
+
+  @Output() addTaskEmitter =  new EventEmitter<Task>()
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addTack() {
-
+  addTask() {
+    let task = new Task(this.name, this.category, this.status, this.dateStart, this.dateEnd);
+    this.addTaskEmitter.emit(task);
   }
 }

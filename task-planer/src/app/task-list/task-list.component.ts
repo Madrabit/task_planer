@@ -10,37 +10,15 @@ import { Task } from './task.model';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[] = [
-    {
-      name: 'Name 1',
-      category: 'Category 1',
-      dateStart: '18:15 08-10-2021',
-      dateEnd: '10:00 10-11-2021',
-      status: 'Выполнено'
-    },
-    {
-      name: 'Name 2',
-      category: 'Category 2',
-      dateStart: '11:00 07-02-2021',
-      dateEnd: '09:00 20-03-2021',
-      status: 'Запланировано'
-    },
-    {
-      name: 'Name 3',
-      category: 'Category 2',
-      dateStart: '11:00 07-02-2021',
-      dateEnd: '09:00 20-03-2021',
-      status: 'Просрочено'
-    },
-    {
-      name: 'Name 4',
-      category: 'Category 3',
-      dateStart: '11:00 07-02-2021',
-      dateEnd: '09:00 20-03-2021',
-      status: 'Выполнено'
-    }
+    new Task('Name 1', 'Category 1', 'Выполнено',
+      '18:15 08-10-2021', '10:00 10-11-2021'),
+    new Task('Name 2', 'Category 2', 'Запланировано',
+      '11:00 07-02-2021', '09:00 20-03-2021'),
+    new Task('Name 3', 'Category 2', 'Просрочено',
+      '11:00 07-02-2021', '09:00 20-03-2021'),
+    new Task('Name 4', 'Category 3', 'Выполнено',
+      '11:00 07-02-2021', '09:00 20-03-2021')
   ]
-
-
 
   checkedFilter: boolean = false
 
@@ -76,6 +54,11 @@ export class TaskListComponent implements OnInit {
       this.tasks.splice(itemIndex, 1)
     }
     console.log(`Задача ${name} удалена`);
+  }
+
+  addTaskToArray(task: Task) {
+    this.tasks.push(task);
+    console.log(`Добавлена задача ${task.name}`)
   }
 
   getTasksAmountByStatus(status: string) {
