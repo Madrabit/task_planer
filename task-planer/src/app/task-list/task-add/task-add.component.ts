@@ -8,6 +8,7 @@ import { Task } from '../task.model';
   styleUrls: ['./task-add.component.scss']
 })
 export class TaskAddComponent implements OnInit {
+  id!: number;
   name!: string;
   category!: string;
   dateStart!: string;
@@ -22,7 +23,7 @@ export class TaskAddComponent implements OnInit {
   }
 
   addTask() {
-    let task = new Task(this.name, this.category, this.status, this.dateStart, this.dateEnd);
+    let task = new Task(0, this.name, this.category, this.status, this.dateStart, this.dateEnd);
     this.addTaskEmitter.emit(task);
   }
 }

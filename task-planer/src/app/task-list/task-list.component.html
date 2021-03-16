@@ -1,9 +1,18 @@
 <div class="p-5 ">
   <div class="row">
-    <div class="col-4">
-      <app-task-add
+    <div class="col-4" >
+      <app-task-add *ngIf="!editable"
         (addTaskEmitter)="addTaskToArray($event)"
       ></app-task-add>
+      <app-edit-task *ngIf="editable"
+                     [id] = "editingTask._id"
+                     [name]="editingTask.name"
+                     [category]="editingTask.category"
+                     [dateStart]="editingTask.dateStart"
+                     [dateEnd]="editingTask.dateEnd"
+                     [status]="editingTask.status"
+        (saveTaskEmitter)="saveTaskToArray($event)"
+      ></app-edit-task>
     </div>
     <div class="col-3">
       <app-statistic
@@ -36,11 +45,13 @@
     <!--      <tr scope="row" app-list-row (deleteTaskEmitter)="deleteTaskFromArray($event)">-->
     <ng-container *ngFor="let task of tasks" >
       <tr  app-list-row *ngIf="!checkedFilter && task.status !== 'Выполнено' || checkedFilter "
+           [id] = "task._id"
            [name]="task.name"
            [category]="task.category"
            [dateStart]="task.dateStart"
            [dateEnd]="task.dateEnd"
            [status]="task.status"
+           (editTaskEmitter)="editTask($event)"
            (deleteTaskEmitter)="deleteTaskFromArray($event)"
       >
     </ng-container>
