@@ -1,0 +1,17 @@
+<div class="input-group input-group-sm mb-3">
+  <input type="text" placeholder="name" class="form-control" aria-label="name" [(ngModel)]="name">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <input type="text" placeholder="category" class="form-control" aria-label="category" [(ngModel)]="category">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <input type="text" placeholder="dateStart" class="form-control" aria-label="dateStart" [(ngModel)]="dateStart">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <input type="text" placeholder="dateEnd" class="form-control" aria-label="dateEnd" [(ngModel)]="dateEnd">
+</div>
+<div class="input-group input-group-sm mb-3">
+  <input type="text" placeholder="status" class="form-control" aria-label="status" [(ngModel)]="status">
+</div>
+<button class="btn btn-success mb-1 mr-2" (click)="saveTask()">Сохранить</button>
+<button class="btn btn-success mb-1" (click)="cancel()">Отмена</button>
