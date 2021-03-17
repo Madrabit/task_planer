@@ -1,4 +1,14 @@
-import { Component, OnInit, EventEmitter, Output, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input,
+  OnDestroy,
+  OnChanges,
+  DoCheck,
+  HostBinding
+} from '@angular/core';
 import { Task } from '../task.model';
 
 @Component({
@@ -15,7 +25,6 @@ export class EditTaskComponent implements OnInit, OnDestroy, OnChanges, DoCheck 
   @Input() status!: string;
   statuses: [string, string, string, string] = ['Запланировано', 'Выполняется', 'Выполнено', 'Просрочено'];
   selectedStatus: string = status;
-
   constructor() { }
 
   @Output() saveTaskEmitter = new EventEmitter<Task>()

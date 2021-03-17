@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-statistic',
@@ -11,6 +11,7 @@ export class StatisticComponent implements OnInit {
   @Input() tasksPlanned: any;
   @Input() tasksOverdue: any;
   @Input() tasksFinished: any;
+  @HostBinding('style.backgroundColor') backgroundColor: string = 'blue';
 
   constructor() { }
 
