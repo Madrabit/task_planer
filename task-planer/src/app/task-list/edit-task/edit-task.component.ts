@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Task } from '../task.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { Task } from '../task.model';
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.scss']
 })
-export class EditTaskComponent implements OnInit {
+export class EditTaskComponent implements OnInit, OnDestroy, OnChanges {
   @Input() id!: number;
   @Input() name!: string;
   @Input() category!: string;
@@ -17,9 +17,20 @@ export class EditTaskComponent implements OnInit {
   constructor() { }
 
   @Output() saveTaskEmitter = new EventEmitter<Task>()
+  @Output() cancelEditEmitter = new EventEmitter<boolean>()
 
   ngOnInit(): void {
+    console.log('Init edit.ts')
   }
+
+  ngOnDestroy(): void {
+    console.log('Destroy edit.ts')
+  }
+
+  ngOnChanges(): void {
+    console.log('Change edit.ts')
+  }
+
 
   saveTask() {
     let task = new Task(0, this.name, this.category, this.status, this.dateStart, this.dateEnd);
@@ -27,6 +38,6 @@ export class EditTaskComponent implements OnInit {
   }
 
   cancel() {
-
+    this.cancelEditEmitter.emit(false);
   }
 }

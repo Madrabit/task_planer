@@ -8,10 +8,11 @@
                      [id] = "editingTask._id"
                      [name]="editingTask.name"
                      [category]="editingTask.category"
-                     [dateStart]="editingTask.dateStart"
-                     [dateEnd]="editingTask.dateEnd"
+                     [dateStart]="editingTask.dateStart!"
+                     [dateEnd]="editingTask.dateEnd!"
                      [status]="editingTask.status"
         (saveTaskEmitter)="saveTaskToArray($event)"
+        (cancelEditEmitter)="cancelEdit($event)"
       ></app-edit-task>
     </div>
     <div class="col-3">
@@ -48,8 +49,8 @@
            [id] = "task._id"
            [name]="task.name"
            [category]="task.category"
-           [dateStart]="task.dateStart"
-           [dateEnd]="task.dateEnd"
+           [dateStart]="task.dateStart!"
+           [dateEnd]="task.dateEnd!"
            [status]="task.status"
            (editTaskEmitter)="editTask($event)"
            (deleteTaskEmitter)="deleteTaskFromArray($event)"

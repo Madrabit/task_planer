@@ -85,4 +85,8 @@ export class TaskListComponent implements OnInit {
       }
     }
   }
+
+  cancelEdit($event: boolean) {
+    this.editable = false;
+  }
 }
