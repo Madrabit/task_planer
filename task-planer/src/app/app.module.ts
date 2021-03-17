@@ -10,6 +10,7 @@ import { ListRowComponent } from './task-list/list-row/list-row.component';
 import { FormsModule } from '@angular/forms';
 import { TaskAddComponent } from './task-list/task-add/task-add.component';
 import { EditTaskComponent } from './task-list/edit-task/edit-task.component';
+import { LogDirective } from './shared/directives/log.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditTaskComponent } from './task-list/edit-task/edit-task.component';
     ListRowComponent,
     TaskAddComponent,
     EditTaskComponent,
+    LogDirective,
   ],
   imports: [
     BrowserModule,
