@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 import { Task } from '../task.model';
 
 @Component({
@@ -6,13 +6,15 @@ import { Task } from '../task.model';
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.scss']
 })
-export class EditTaskComponent implements OnInit, OnDestroy, OnChanges {
+export class EditTaskComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
   @Input() id!: number;
   @Input() name!: string;
   @Input() category!: string;
   @Input() dateStart!: string;
   @Input() dateEnd!: string;
   @Input() status!: string;
+  statuses: [string, string, string, string] = ['Запланировано', 'Выполняется', 'Выполнено', 'Просрочено'];
+  selectedStatus: string = status;
 
   constructor() { }
 
@@ -20,24 +22,34 @@ export class EditTaskComponent implements OnInit, OnDestroy, OnChanges {
   @Output() cancelEditEmitter = new EventEmitter<boolean>()
 
   ngOnInit(): void {
-    console.log('Init edit.ts')
   }
 
   ngOnDestroy(): void {
-    console.log('Destroy edit.ts')
   }
 
   ngOnChanges(): void {
-    console.log('Change edit.ts')
+
   }
 
+  ngDoCheck() {
+    console.log('changed')
+    console.log(this.selectedStatus)
+    if (this.selectedStatus === 'Выполнено') {
+      console.log('Отмена выполнения')
+      this.cancelEditEmitter.emit(false);
+    }
+  }
 
   saveTask() {
-    let task = new Task(0, this.name, this.category, this.status, this.dateStart, this.dateEnd);
+    let task = new Task(0, this.name, this.category, this.selectedStatus, this.dateStart, this.dateEnd);
     this.saveTaskEmitter.emit(task);
   }
 
   cancel() {
     this.cancelEditEmitter.emit(false);
+  }
+
+  selectChange(e: any) {
+    this.selectedStatus = e.target.value;
   }
 }

@@ -13,9 +13,12 @@ export class TaskAddComponent implements OnInit {
   category!: string;
   dateStart!: string;
   dateEnd!: string;
-  status!: string;
+  status: [string, string, string, string] = ['Запланировано', 'Выполняется', 'Выполнено', 'Просрочено'];
+
+  selectedStatus: string = 'Запланировано';
 
   @Output() addTaskEmitter =  new EventEmitter<Task>()
+
 
   constructor() { }
 
@@ -23,7 +26,11 @@ export class TaskAddComponent implements OnInit {
   }
 
   addTask() {
-    let task = new Task(0, this.name, this.category, this.status, this.dateStart, this.dateEnd);
+    let task = new Task(0, this.name, this.category, this.selectedStatus, this.dateStart, this.dateEnd);
     this.addTaskEmitter.emit(task);
+  }
+
+  selectChange(e: any) {
+   this.selectedStatus = e.target.value;
   }
 }

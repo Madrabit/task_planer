@@ -11,7 +11,11 @@
   <input type="text" placeholder="dateEnd" class="form-control" aria-label="dateEnd"   [(ngModel)]="dateEnd">
 </div>
 <div class="input-group input-group-sm mb-3">
-  <input type="text" placeholder="status" class="form-control" aria-label="status"   [(ngModel)]="status">
+  <select class="form-select" aria-label="Default select example"
+          (change)="selectChange($event)"
+  >
+    <option *ngFor="let s of status"  [ngValue]="s" [selected]="s === 'Запланировано'">{{s}}</option>
+  </select>
 </div>
 <button class="btn btn-success mb-1" (click)="addTask()">Добавить задачу</button>
 
