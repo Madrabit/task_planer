@@ -13,6 +13,7 @@ import { EditTaskComponent } from './task-list/edit-task/edit-task.component';
 import { LogDirective } from './shared/directives/log.directive';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 import { DateDirective } from './shared/directives/date.directive';
+import { TaskService } from './shared/services/task.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { DateDirective } from './shared/directives/date.directive';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

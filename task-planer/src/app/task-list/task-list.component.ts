@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
 import { Task } from './task.model';
+import { TaskService } from '../shared/services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -26,16 +27,18 @@ export class TaskListComponent implements OnInit {
   checkedFilter: boolean = false
   editingTask!: Task;
 
-  constructor() {
+  constructor(private taskService: TaskService) {
 
   }
 
   ngOnInit(): void {
-
+    this.taskService.dataUpdate$.subscribe((data: Task) => {
+      this.saveTaskToArray(data)
+    });
   }
 
 
-  addTack() {
+  addTask() {
     console.log('Задача создана');
   }
 
@@ -74,7 +77,6 @@ export class TaskListComponent implements OnInit {
     this.editable = !this.editable
     this.indexForEdit = id
     this.editingTask = {...this.tasks[this.indexForEdit]}
-    console.log(id)
   }
 
   saveTaskToArray(task: Task) {
