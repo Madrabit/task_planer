@@ -12,6 +12,7 @@ import { TaskAddComponent } from './task-list/task-add/task-add.component';
 import { EditTaskComponent } from './task-list/edit-task/edit-task.component';
 import { LogDirective } from './shared/directives/log.directive';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
+import { DateDirective } from './shared/directives/date.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
     EditTaskComponent,
     LogDirective,
     MyTitleCasePipe,
+    DateDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <th class="align-middle" scope="row">{{ name | myTitleCase }}</th>
 <td class="align-middle">{{ category }}</td>
-<td class="align-middle">{{ dateStart }}</td>
-<td class="align-middle">{{ dateEnd }}</td>
+<td class="align-middle">{{ helperService.beautifyDate(dateStart, 'DD-MM-YYYY', 'DD MM YY') }}</td>
+<td class="align-middle">{{ helperService.beautifyDate(dateEnd, 'DD-MM-YYYY', 'DD MM YY') }}</td>
 <td class="d-flex justify-content-between align-items-center" [ngClass]="status === 'Просрочено' ?
 'table-danger' : 'table-light'
 ">

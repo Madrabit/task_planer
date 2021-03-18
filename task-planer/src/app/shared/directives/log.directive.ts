@@ -1,14 +1,25 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: 'input [log]'
 })
 export class LogDirective {
 
-  constructor() { }
+  constructor(private element: ElementRef, private renderer: Renderer2) {
+    this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer');
+  }
+
 
   @HostListener('blur', ['$event'])
   onInput(event: { target: { value: any; }; }) {
-    console.log(event.target.value)
+    this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', '')
   }
+
+  @HostListener('keypress', ['$event'])
+  onKeyPress(event: KeyboardEvent) {
+    this.renderer.setStyle(this.element.nativeElement, 'backgroundColor', 'yellow')
+  }
+
+  @HostBinding('style.backgroundColor') backgroundColor: string = 'transient';
+
 }

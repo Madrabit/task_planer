@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HelperService } from 'src/app/shared/services/helper.service';
 import { Task } from '../task.model';
 @Component({
   selector: '[app-list-row]',
@@ -22,6 +23,7 @@ export class ListRowComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  helperService = new HelperService();
 
   deleteTask() {
     this.deleteTaskEmitter.emit(this.name)
