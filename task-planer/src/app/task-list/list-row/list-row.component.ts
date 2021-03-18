@@ -4,7 +4,8 @@ import { Task } from '../task.model';
 @Component({
   selector: '[app-list-row]',
   templateUrl: './list-row.component.html',
-  styleUrls: ['./list-row.component.scss']
+  styleUrls: ['./list-row.component.scss'],
+  providers: [HelperService]
 })
 export class ListRowComponent implements OnInit {
 
@@ -18,12 +19,10 @@ export class ListRowComponent implements OnInit {
   @Output() deleteTaskEmitter = new EventEmitter<string>()
   @Output() editTaskEmitter = new EventEmitter<number>()
 
-  constructor() { }
+  constructor(private helperService: HelperService) { }
 
   ngOnInit(): void {
   }
-
-  helperService = new HelperService();
 
   deleteTask() {
     this.deleteTaskEmitter.emit(this.name)

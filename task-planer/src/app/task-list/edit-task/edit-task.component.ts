@@ -10,6 +10,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { Task } from '../task.model';
+import { HelperService } from '../../shared/services/helper.service';
 
 @Component({
   selector: 'app-edit-task',
