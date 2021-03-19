@@ -3,17 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { TaskListComponent } from './task-list/task-list.component';
-import { StatisticComponent } from './task-list/statistic/statistic.component';
-import { ListRowComponent } from './task-list/list-row/list-row.component';
+import { HeaderComponent } from './core/header/header.component';
+import { TaskListComponent } from './task/task-list/task-list.component';
+import { StatisticComponent } from './task/task-list/statistic/statistic.component';
+import { ListRowComponent } from './task/task-list/list-row/list-row.component';
 import { FormsModule } from '@angular/forms';
-import { TaskAddComponent } from './task-list/task-add/task-add.component';
-import { EditTaskComponent } from './task-list/edit-task/edit-task.component';
+import { TaskAddComponent } from './task/task-list/task-add/task-add.component';
+import { EditTaskComponent } from './task/task-list/edit-task/edit-task.component';
 import { LogDirective } from './shared/directives/log.directive';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 import { DateDirective } from './shared/directives/date.directive';
 import { TaskService } from './shared/services/task.service';
+import { NoteListComponent } from './note-list/note-list.component';
+
 
 @NgModule({
   declarations: [
@@ -27,11 +29,12 @@ import { TaskService } from './shared/services/task.service';
     LogDirective,
     MyTitleCasePipe,
     DateDirective,
+    NoteListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

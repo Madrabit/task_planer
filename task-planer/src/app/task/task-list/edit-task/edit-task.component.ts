@@ -9,8 +9,8 @@ import {
   HostBinding, AfterViewInit, AfterViewChecked
 } from '@angular/core';
 import { Task } from '../task.model';
-import { HelperService } from '../../shared/services/helper.service';
-import { TaskService } from '../../shared/services/task.service';
+import { HelperService } from '../../../shared/services/helper.service';
+import { TaskService } from '../../../shared/services/task.service';
 
 @Component({
   selector: 'app-edit-task',

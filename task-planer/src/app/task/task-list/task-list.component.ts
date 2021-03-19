@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
 import { Task } from './task.model';
-import { TaskService } from '../shared/services/task.service';
+import { TaskService } from '../../shared/services/task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
