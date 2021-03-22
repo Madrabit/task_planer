@@ -1,26 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
 import { Task } from './task.model';
 import { TaskService } from '../../shared/services/task.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TaskStorageService } from '../../shared/services/task-storage.service';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnChanges, AfterViewInit {
 
-  tasks: Task[] = [
-    new Task(0,'Name 1', 'Category 1', 'Выполнено',
-      '08-10-2021', '10-11-2021'),
-    new Task(1, 'Name 2', 'Category 2', 'Запланировано',
-      '07-02-2021', '20-03-2021'),
-    new Task(2, 'Name 3', 'Category 2', 'Просрочено',
-      '03-02-2021', '01-03-2021'),
-    new Task(3,'Name 4', 'Category 3', 'Выполнено',
-      '05-02-2021', '21-03-2021')
-  ]
+  public tasks!: Task[]
 
   editable: boolean = false
   indexForEdit!: number
@@ -28,16 +20,29 @@ export class TaskListComponent implements OnInit {
   checkedFilter: boolean = false
   editingTask!: Task;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute,
+  private taskStorage: TaskStorageService
+  ) {
 
   }
 
   ngOnInit(): void {
+    this.tasks = this.taskStorage.tasks
     this.taskService.dataUpdate$.subscribe((data: Task) => {
       this.saveTaskToArray(data)
     });
   }
 
+
+  ngOnChanges(): void {
+
+
+
+  }
+
+  ngAfterViewInit(): void {
+    this.taskStorage.observableTasks$.subscribe(e => this.tasks = e);
+  }
 
   addTask() {
     console.log('Задача создана');
@@ -49,7 +54,6 @@ export class TaskListComponent implements OnInit {
 
   filterTasks($event: any) {
     this.checkedFilter = $event.currentTarget.checked;
-    console.log($event.currentTarget.checked);
   }
 
   getTasksListSize() {
@@ -92,4 +96,7 @@ export class TaskListComponent implements OnInit {
   cancelEdit($event: boolean) {
     this.editable = false;
   }
+
+
+
 }

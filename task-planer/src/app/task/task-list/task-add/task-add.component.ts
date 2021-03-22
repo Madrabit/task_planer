@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Task } from '../task.model';
+import { TaskStorageService } from '../../../shared/services/task-storage.service';
 
 
 @Component({
@@ -20,14 +21,15 @@ export class TaskAddComponent implements OnInit {
   @Output() addTaskEmitter =  new EventEmitter<Task>()
 
 
-  constructor() { }
+  constructor(private taskStorageService: TaskStorageService) { }
 
   ngOnInit(): void {
   }
 
   addTask() {
     let task = new Task(0, this.name, this.category, this.selectedStatus, this.dateStart, this.dateEnd);
-    this.addTaskEmitter.emit(task);
+    this.taskStorageService.addTask(task)
+    // this.addTaskEmitter.emit(task);
   }
 
   selectChange(e: any) {

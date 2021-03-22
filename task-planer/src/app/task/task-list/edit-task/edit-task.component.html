@@ -1,20 +1,20 @@
 <div class="input-group input-group-sm mb-3">
-  <input log type="text" placeholder="name" class="form-control" aria-label="name" [(ngModel)]="name">
+  <input log type="text" placeholder="name" class="form-control" aria-label="name" [(ngModel)]="currentTask.name">
 </div>
 <div class="input-group input-group-sm mb-3">
-  <input log type="text" placeholder="category" class="form-control" aria-label="category" [(ngModel)]="category">
+  <input log type="text" placeholder="category" class="form-control" aria-label="category" [(ngModel)]="currentTask.category">
 </div>
 <div class="input-group input-group-sm mb-3">
-  <input log date type="text" placeholder="dateStart" class="form-control" aria-label="dateStart" [(ngModel)]="dateStart">
+  <input log date type="text" placeholder="dateStart" class="form-control" aria-label="dateStart" [(ngModel)]="currentTask.dateStart">
 </div>
 <div class="input-group input-group-sm mb-3">
-  <input log date type="text" placeholder="dateEnd" class="form-control" aria-label="dateEnd" [(ngModel)]="dateEnd">
+  <input log date type="text" placeholder="dateEnd" class="form-control" aria-label="dateEnd" [(ngModel)]="currentTask.dateEnd">
 </div>
 <div class="input-group input-group-sm mb-3">
   <select class="form-select" aria-label="Default select example"
           (change)="selectChange($event)"
   >
-    <option *ngFor="let s of statuses"  [ngValue]="s" [selected]="s === status">{{s}}</option>
+    <option *ngFor="let s of statuses"  [ngValue]="s" [selected]="s === currentTask.status">{{s}}</option>
   </select>
 </div>
 <button class="btn btn-success mb-1 mr-2" (click)="saveTask()">Сохранить</button>

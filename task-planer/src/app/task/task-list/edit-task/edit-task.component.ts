@@ -11,6 +11,9 @@ import {
 import { Task } from '../task.model';
 import { HelperService } from '../../../shared/services/helper.service';
 import { TaskService } from '../../../shared/services/task.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import {Location} from '@angular/common';
+import { TaskStorageService } from '../../../shared/services/task-storage.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -27,7 +30,14 @@ export class EditTaskComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   statuses: [string, string, string, string] = ['Запланировано', 'Выполняется', 'Выполнено', 'Просрочено'];
   selectedStatus!: string;
 
-  constructor(private taskService: TaskService) { }
+  currentTask!: Task
+
+  constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute,
+              public _location: Location, private taskStorage: TaskStorageService,
+              private router: Router) {
+    activatedRoute.params.subscribe((params)=> this.id  = params['id'])
+    this.currentTask = this.taskStorage.tasks[this.id]
+  }
 
   @Output() saveTaskEmitter = new EventEmitter<Task>()
   @Output() cancelEditEmitter = new EventEmitter<boolean>()
@@ -53,12 +63,13 @@ export class EditTaskComponent implements OnInit, OnDestroy, OnChanges, AfterVie
 
 
   saveTask() {
-    let task = new Task(0, this.name, this.category, this.selectedStatus, this.dateStart, this.dateEnd);
-    this.taskService.updateDate(task)
+    this.taskService.updateDate(this.currentTask)
+    this.router.navigate(['tasks']);
    // this.saveTaskEmitter.emit(task);
   }
 
   cancel() {
+    this._location.back();
     this.cancelEditEmitter.emit(false);
   }
 
