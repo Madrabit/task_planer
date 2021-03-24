@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HelperService } from 'src/app/shared/services/helper.service';
-import { Task } from '../task.model';
+import { Task } from '../../../shared/model/task.model';
 import { TaskService } from '../../../shared/services/task.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 @Component({

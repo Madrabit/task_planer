@@ -15,6 +15,8 @@ import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 import { DateDirective } from './shared/directives/date.directive';
 import { TaskService } from './shared/services/task.service';
 import { NoteListComponent } from './note-list/note-list.component';
+import { LoginComponent } from './login/login/login.component';
+import { AuthGuardService } from './shared/services/auth-guard.service';
 
 
 @NgModule({
@@ -30,13 +32,14 @@ import { NoteListComponent } from './note-list/note-list.component';
     MyTitleCasePipe,
     DateDirective,
     NoteListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [TaskService],
+  providers: [TaskService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

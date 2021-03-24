@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnChanges, OnInit } from '@angular/core';
 import { findIndex } from 'rxjs/operators';
-import { Task } from './task.model';
+import { Task } from '../../shared/model/task.model';
 import { TaskService } from '../../shared/services/task.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskStorageService } from '../../shared/services/task-storage.service';

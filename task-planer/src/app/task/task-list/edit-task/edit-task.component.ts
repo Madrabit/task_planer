@@ -8,7 +8,7 @@ import {
   OnChanges,
   HostBinding, AfterViewInit, AfterViewChecked
 } from '@angular/core';
-import { Task } from '../task.model';
+import { Task } from '../../../shared/model/task.model';
 import { HelperService } from '../../../shared/services/helper.service';
 import { TaskService } from '../../../shared/services/task.service';
 import { ActivatedRoute, Router } from '@angular/router';

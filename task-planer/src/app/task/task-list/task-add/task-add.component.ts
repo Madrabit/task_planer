@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Task } from '../task.model';
+import { Task } from '../../../shared/model/task.model';
 import { TaskStorageService } from '../../../shared/services/task-storage.service';
 
 
