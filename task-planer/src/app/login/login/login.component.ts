@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/model/user.model';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -25,5 +26,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['tasks'])
     }
 
+  }
+
+  submitForm(loginForm: NgForm) {
+    console.log(loginForm)
   }
 }
